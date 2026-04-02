@@ -1,0 +1,299 @@
+/* CoffeeIntro.css */
+
+.coffee-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #f5e6c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ── Phase 1: sky/cream bg ── */
+.coffee-bg-fill {
+  position: absolute;
+  inset: 0;
+  background: #f5e6c8;
+  transition: background 0s;
+  z-index: 0;
+}
+
+/* ── Coffee liquid flood (rises from bottom) ── */
+.coffee-flood {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  background: linear-gradient(to top, #1a0a00 0%, #3b1a00 40%, #5c2d00 70%, #7a3d00 90%, #8B4513 100%);
+  z-index: 1;
+  transition: height 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 60% 60% 0 0 / 20px 20px 0 0;
+}
+
+.coffee-flood.pour {
+  height: 100%;
+  border-radius: 0;
+}
+
+/* Foam/crema layer */
+.coffee-flood::after {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: radial-gradient(ellipse, #c8851a 0%, #b36b00 50%, transparent 80%);
+  opacity: 0.6;
+  filter: blur(8px);
+  border-radius: 50%;
+}
+
+/* ── Cup scene ── */
+.cup-scene {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Drop-in animation */
+@keyframes cupDrop {
+  0%   { transform: translateY(-120vh) rotate(-8deg); opacity: 0; }
+  60%  { transform: translateY(20px) rotate(2deg); opacity: 1; }
+  75%  { transform: translateY(-8px) rotate(-1deg); }
+  88%  { transform: translateY(6px) rotate(0.5deg); }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+.cup-wrapper {
+  animation: cupDrop 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* ── Steam wisps ── */
+@keyframes steamRise {
+  0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+  20%  { opacity: 0.8; }
+  80%  { opacity: 0.4; }
+  100% { transform: translateY(-60px) scaleX(1.4); opacity: 0; }
+}
+
+.steam-wisp {
+  position: absolute;
+  width: 4px;
+  border-radius: 50px;
+  background: linear-gradient(to top, rgba(255,255,255,0.7), transparent);
+  filter: blur(3px);
+  top: -60px;
+  animation: steamRise 2.2s ease-in-out infinite;
+}
+.steam-wisp:nth-child(1) { height: 40px; left: 38%; animation-delay: 0s; }
+.steam-wisp:nth-child(2) { height: 55px; left: 50%; animation-delay: 0.6s; }
+.steam-wisp:nth-child(3) { height: 35px; left: 62%; animation-delay: 1.2s; }
+
+/* ── Coffee drip from cup ── */
+@keyframes dripFall {
+  0%   { height: 0; opacity: 1; top: 100%; }
+  70%  { height: 200px; opacity: 1; }
+  100% { height: 200px; opacity: 0; top: 100%; }
+}
+
+.coffee-drip {
+  position: absolute;
+  width: 6px;
+  background: linear-gradient(to bottom, #3b1a00, #1a0a00);
+  border-radius: 0 0 50% 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: dripFall 0.9s ease-in 1.3s both;
+  z-index: 5;
+}
+
+/* ── Splash ripple ── */
+@keyframes splashRipple {
+  0%   { transform: scale(0); opacity: 1; }
+  100% { transform: scale(6); opacity: 0; }
+}
+
+.splash-ring {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(90, 40, 0, 0.5);
+  bottom: -20px;
+  left: 50%;
+  transform-origin: center;
+  margin-left: -20px;
+}
+.splash-ring:nth-child(1) { animation: splashRipple 0.8s ease-out 2.2s both; }
+.splash-ring:nth-child(2) { animation: splashRipple 0.8s ease-out 2.35s both; }
+.splash-ring:nth-child(3) { animation: splashRipple 0.8s ease-out 2.5s both; }
+
+/* ── Brand text reveal ── */
+@keyframes brandReveal {
+  from { opacity: 0; letter-spacing: 20px; }
+  to   { opacity: 1; letter-spacing: 6px; }
+}
+
+.intro-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  letter-spacing: 6px;
+  color: #1a0a00;
+  margin-top: 30px;
+  animation: brandReveal 0.9s ease 1.8s both;
+  z-index: 10;
+  position: relative;
+  text-shadow: 0 2px 20px rgba(90,30,0,0.2);
+  transition: color 0.8s ease;
+}
+
+.intro-brand.light {
+  color: #f5e6c8;
+}
+
+.intro-brand span {
+  color: #b3bd78;
+}
+
+/* ── Tagline ── */
+@keyframes taglineIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.intro-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #6b3a1a;
+  animation: taglineIn 0.7s ease 2.3s both;
+  z-index: 10;
+  margin-top: 6px;
+  transition: color 0.8s ease;
+}
+
+.intro-tagline.light {
+  color: #c8a87a;
+}
+
+/* ── Particles (floating coffee beans) ── */
+@keyframes beanFloat {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.coffee-particle {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: #3b1a00;
+  z-index: 2;
+  animation: beanFloat linear infinite;
+}
+
+/* ── Skip button ── */
+.intro-skip {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  z-index: 20;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-family: 'DM Sans', sans-serif;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s, transform 0.3s;
+  animation: taglineIn 0.5s ease 3s both;
+}
+
+.intro-skip:hover {
+  background: rgba(0,0,0,0.4);
+  transform: scale(1.04);
+}
+
+/* ── Fade out the entire overlay ── */
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; pointer-events: none; }
+}
+
+.coffee-intro-overlay.exit {
+  animation: overlayFadeOut 0.9s ease forwards;
+}
+
+/* ── Website animated background (after intro) ── */
+.app-bg-animated {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  pointer-events: none;
+}
+
+/* Radial coffee glow that pulses */
+@keyframes coffeeGlowPulse {
+  0%, 100% {
+    background: radial-gradient(ellipse at 50% 80%, rgba(90,30,0,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 20%, rgba(179,189,120,0.05) 0%, transparent 40%),
+                #000;
+  }
+  50% {
+    background: radial-gradient(ellipse at 50% 80%, rgba(90,30,0,0.28) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 10%, rgba(179,189,120,0.08) 0%, transparent 40%),
+                #000;
+  }
+}
+
+.app-bg-animated {
+  animation: coffeeGlowPulse 6s ease-in-out infinite;
+}
+
+/* Floating coffee bean particles on main site */
+@keyframes siteBeanFloat {
+  0%   { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
+  5%   { opacity: 0.15; transform: translateY(95vh) rotate(10deg) scale(1); }
+  95%  { opacity: 0.08; }
+  100% { transform: translateY(-10vh) rotate(400deg) scale(0.5); opacity: 0; }
+}
+
+.site-particle {
+  position: fixed;
+  width: 8px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(179,189,120,0.4);
+  pointer-events: none;
+  z-index: 0;
+  animation: siteBeanFloat linear infinite;
+}
+
+/* Coffee ripple on background */
+@keyframes bgRipple {
+  0%   { transform: scale(0.8); opacity: 0.06; }
+  50%  { transform: scale(1.2); opacity: 0.12; }
+  100% { transform: scale(0.8); opacity: 0.06; }
+}
+
+.bg-ripple {
+  position: fixed;
+  border-radius: 50%;
+  border: 1px solid rgba(179,189,120,0.15);
+  pointer-events: none;
+  z-index: 0;
+  animation: bgRipple ease-in-out infinite;
+}
