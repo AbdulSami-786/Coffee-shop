@@ -2,7 +2,7 @@
 // Drop-in coffee cup → pour → flood → reveal website
 
 import React, { useEffect, useState, useRef } from 'react';
-import "./Coffeeintro.css";
+import "./Coffeeintr.css";
 
 // ── SVG Cup ─────────────────────────────────────────────────────────────────
 const CoffeeCupSVG = ({ fillLevel = 0 }) => (
