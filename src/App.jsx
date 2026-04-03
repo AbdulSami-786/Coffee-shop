@@ -3,6 +3,7 @@ import "./App.css";
 import { Calendar, ArrowRight } from 'lucide-react';
 import CoffeeIntro from "./Coffeeintro.jsx";
 import { SiteParticles } from "./Coffeeintro.jsx";
+import Navbar from "./Navbar.jsx";
 
 // ─── Events Data ──────────────────────────────────────────────────────────────
 const eventsData = [
@@ -148,6 +149,7 @@ const HotCoffee = () => {
     { img: 'https://hotcoffee.themerex.net/wp-content/uploads/2021/08/images-37-min-1.jpg',       name: 'Vanilla Latte',     price: '$4.95', desc: '"Signature espresso blended with creamy vanilla milk."', badge: null },
   ];
 
+
   return (
     <>
       {showIntro && <CoffeeIntro onComplete={handleIntroComplete} />}
@@ -160,23 +162,7 @@ const HotCoffee = () => {
       }}>
 
         {/* ── Navbar ── */}
-        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-          <div className="container nav-content">
-            <div className="logo">HOT<span>COFFEE</span></div>
-            <div className="nav-links">
-              <a href="#home">Home</a>
-              <a href="#about">About</a>
-              <a href="#menuss">Menu</a>
-              <a href="#reservation">Reservation</a>
-              <a href="#contact">Contact</a>
-            </div>
-            <div className="nav-icons">
-              <button>🔍</button>
-              <button>🛒</button>
-              <button>☰</button>
-            </div>
-          </div>
-        </nav>
+ <Navbar/>
 
         {/* ── Hero ── */}
         <section id="home" className="hero">
@@ -185,9 +171,9 @@ const HotCoffee = () => {
             <h1>Better Coffee<br/>For Better Days</h1>
             <div className="hero-divider" />
             <p>Experience the rich aroma and smooth taste of our artisanal coffee.</p>
-            <div className="hero-buttons">
+            <div className="hero-buttons herbtn">
               <a href="#menuss" className="btn primary">Order Online</a>
-              <a href="#reservation" className="btn secondary">Book A Table</a>
+              <a href="#reservation" className="btn secondary btnnn">Book A Table</a>
             </div>
           </div>
         </section>

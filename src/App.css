@@ -1428,3 +1428,13 @@ body {
   .event-id { width: 45px; }
   .events-title { font-size: 24px; }
 }
+.btnnn{
+  /* margin-bottom: 50px; */
+}
+.herbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+}
