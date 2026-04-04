@@ -1,4 +1,5 @@
-/* CoffeeIntro.css */
+/* Coffeeintr.css */
+/* FULLY RESPONSIVE: desktop design unchanged, mobile tweaks only for scaling & safe areas */
 
 .coffee-intro-overlay {
   position: fixed;
@@ -53,13 +54,17 @@
   border-radius: 50%;
 }
 
-/* ── Cup scene ── */
+/* ── Cup scene (responsive: auto margin & centering) ── */
 .cup-scene {
   position: relative;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  /* responsive scaling: preserve aspect */
+  max-width: 90vw;
+  margin: 0 auto;
 }
 
 /* Drop-in animation */
@@ -73,6 +78,24 @@
 
 .cup-wrapper {
   animation: cupDrop 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  display: inline-block;
+  /* scale slightly on smaller screens but keep proportions */
+  transform-origin: center;
+}
+
+/* responsive cup scaling: on mobile, reduce SVG size gracefully */
+@media (max-width: 550px) {
+  .cup-wrapper svg {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cup-wrapper svg {
+    width: 115px;
+    height: 115px;
+  }
 }
 
 /* ── Steam wisps ── */
@@ -96,6 +119,16 @@
 .steam-wisp:nth-child(2) { height: 55px; left: 50%; animation-delay: 0.6s; }
 .steam-wisp:nth-child(3) { height: 35px; left: 62%; animation-delay: 1.2s; }
 
+/* responsive steam wisps: adjust position relative to cup size */
+@media (max-width: 550px) {
+  .steam-wisp {
+    width: 3px;
+  }
+  .steam-wisp:nth-child(1) { left: 36%; }
+  .steam-wisp:nth-child(2) { left: 50%; }
+  .steam-wisp:nth-child(3) { left: 64%; }
+}
+
 /* ── Coffee drip from cup ── */
 @keyframes dripFall {
   0%   { height: 0; opacity: 1; top: 100%; }
@@ -112,6 +145,12 @@
   transform: translateX(-50%);
   animation: dripFall 0.9s ease-in 1.3s both;
   z-index: 5;
+}
+
+@media (max-width: 550px) {
+  .coffee-drip {
+    width: 5px;
+  }
 }
 
 /* ── Splash ripple ── */
@@ -135,7 +174,7 @@
 .splash-ring:nth-child(2) { animation: splashRipple 0.8s ease-out 2.35s both; }
 .splash-ring:nth-child(3) { animation: splashRipple 0.8s ease-out 2.5s both; }
 
-/* ── Brand text reveal ── */
+/* ── Brand text reveal (responsive typography) ── */
 @keyframes brandReveal {
   from { opacity: 0; letter-spacing: 20px; }
   to   { opacity: 1; letter-spacing: 6px; }
@@ -152,6 +191,28 @@
   position: relative;
   text-shadow: 0 2px 20px rgba(90,30,0,0.2);
   transition: color 0.8s ease;
+  text-align: center;
+  padding: 0 16px;
+}
+
+/* responsive brand text */
+@media (max-width: 550px) {
+  .intro-brand {
+    font-size: 32px;
+    letter-spacing: 4px;
+    margin-top: 20px;
+  }
+  @keyframes brandReveal {
+    from { opacity: 0; letter-spacing: 12px; }
+    to   { opacity: 1; letter-spacing: 3px; }
+  }
+}
+
+@media (max-width: 400px) {
+  .intro-brand {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
 }
 
 .intro-brand.light {
@@ -162,7 +223,7 @@
   color: #b3bd78;
 }
 
-/* ── Tagline ── */
+/* ── Tagline responsive ── */
 @keyframes taglineIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -178,13 +239,23 @@
   z-index: 10;
   margin-top: 6px;
   transition: color 0.8s ease;
+  text-align: center;
+  padding: 0 20px;
+}
+
+@media (max-width: 550px) {
+  .intro-tagline {
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 4px;
+  }
 }
 
 .intro-tagline.light {
   color: #c8a87a;
 }
 
-/* ── Particles (floating coffee beans) ── */
+/* ── Particles (floating coffee beans) responsive positions ── */
 @keyframes beanFloat {
   0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
   50%  { opacity: 1; }
@@ -201,7 +272,7 @@
   animation: beanFloat linear infinite;
 }
 
-/* ── Skip button ── */
+/* ── Skip button responsive (bottom-right but mobile friendly) ── */
 .intro-skip {
   position: absolute;
   bottom: 30px;
@@ -221,6 +292,15 @@
   animation: taglineIn 0.5s ease 3s both;
 }
 
+@media (max-width: 550px) {
+  .intro-skip {
+    bottom: 20px;
+    right: 20px;
+    padding: 6px 16px;
+    font-size: 11px;
+  }
+}
+
 .intro-skip:hover {
   background: rgba(0,0,0,0.4);
   transform: scale(1.04);
@@ -236,7 +316,8 @@
   animation: overlayFadeOut 0.9s ease forwards;
 }
 
-/* ── Website animated background (after intro) ── */
+/* ========== WEBSITE BACKGROUND PARTICLES (after intro) ========== */
+/* these stay exactly as original design, no responsive changes needed */
 .app-bg-animated {
   position: fixed;
   inset: 0;
@@ -296,4 +377,40 @@
   pointer-events: none;
   z-index: 0;
   animation: bgRipple ease-in-out infinite;
+}
+
+/* Additional small screen improvements: ensure flood looks good and no overflow */
+@media (max-width: 550px) {
+  .coffee-flood::after {
+    height: 24px;
+    top: -12px;
+  }
+  
+  .splash-ring {
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    bottom: -15px;
+  }
+  
+  .cup-scene {
+    margin-top: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Maintain exact desktop layout for larger screens */
+@media (min-width: 1200px) {
+  .cup-wrapper svg {
+    width: 160px;
+    height: 160px;
+  }
+  .intro-brand {
+    font-size: 42px;
+    letter-spacing: 6px;
+  }
+  .intro-tagline {
+    font-size: 13px;
+    letter-spacing: 4px;
+  }
 }

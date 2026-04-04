@@ -1,5 +1,6 @@
 // CoffeeIntro.jsx
 // Drop-in coffee cup → pour → flood → reveal website
+// FULLY RESPONSIVE: desktop design unchanged, mobile optimized with viewport & scale adjustments
 
 import React, { useEffect, useState, useRef } from 'react';
 import "./Coffeeintr.css";
@@ -43,7 +44,7 @@ const IntroParticle = ({ style }) => (
   <div className="coffee-particle" style={style} />
 );
 
-// ── Site Background Particles ────────────────────────────────────────────────
+// ── Site Background Particles (after intro) ─────────────────────────────────
 export const SiteParticles = () => {
   const particles = Array.from({ length: 12 }, (_, i) => ({
     left: `${Math.random() * 100}%`,
@@ -73,7 +74,7 @@ export const SiteParticles = () => {
   );
 };
 
-// ── Main Intro Component ─────────────────────────────────────────────────────
+// ── Main Intro Component (fully responsive, desktop design preserved) ───────
 const CoffeeIntro = ({ onComplete }) => {
   const [phase, setPhase] = useState(0);
   // 0 = cup drops

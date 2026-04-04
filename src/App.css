@@ -1,4 +1,4 @@
-/* App.css - Complete Black Theme with Professional Animations */
+/* App.css - Complete Black Theme with Professional Animations + Mobile Responsive */
 
 /* ---------- Fonts ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
@@ -230,6 +230,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 24px;
 }
 
 .logo {
@@ -1399,7 +1400,8 @@ body {
   animation: rotateSlow 0.9s linear infinite;
 }
 
-/* ---------- Responsive ---------- */
+/* ========== RESPONSIVE STYLES - MOBILE FIRST (Desktop design preserved) ========== */
+/* For tablets and smaller desktops - keeps design but makes it responsive */
 @media (max-width: 992px) {
   .coffee-features .container { flex-direction: column; }
   .image-stack { width: 100%; height: 450px; margin-bottom: 50px; }
@@ -1407,34 +1409,120 @@ body {
   .coffee-hero .container { flex-direction: column; }
   .menu-grid { flex-direction: column; gap: 0; }
   .title { font-size: 2.5rem; }
+  .container { padding: 0 24px; }
 }
 
+/* Tablets and large phones */
 @media (max-width: 768px) {
-  .grid-3 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; gap: 20px; }
   .nav-links { display: none; }
-  .hero h1 { font-size: 36px; }
-  .image-wrapper { width: 100%; height: 400px; }
-  .title { font-size: 2.2rem; }
-  .events-main-title { font-size: 34px; }
-  .event-item { padding: 18px 12px; }
+  .hero h1 { font-size: 42px; }
+  .hero p { font-size: 16px; }
+  .hero-buttons { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .herbtn { flex-direction: column; gap: 12px; }
+  .btn { padding: 12px 28px; font-size: 14px; width: auto; min-width: 180px; }
+  .image-wrapper { min-width: auto; width: 100%; height: 400px; }
+  .title { font-size: 2rem; }
+  .events-main-title { font-size: 32px; }
+  .event-item { padding: 18px 12px; flex-wrap: wrap; }
   .event-id { width: 50px; }
   .event-id-number { font-size: 22px; }
   .event-price { font-size: 16px; width: 60px; }
+  .events-image { height: 280px; }
+  .events-title { font-size: 22px; }
+  .reservation h2 { font-size: 32px; }
+  .features { padding: 60px 20px; }
+  .features .grid-3 > div { padding: 20px; }
+  .coffee-hero { padding: 60px 20px; }
+  .menu-section { padding: 60px 20px; }
+  .coffee-features { padding: 60px 20px; }
+  .events-section { padding: 60px 16px; }
+  .footer h3 { font-size: 22px; }
 }
 
-@media (max-width: 480px) {
+/* Mobile phones */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 32px; }
+  .hero .tag { font-size: 10px; letter-spacing: 3px; }
+  .hero-content { padding: 0 16px; }
+  .btn { padding: 10px 24px; font-size: 13px; min-width: 160px; }
+  .stat-counter div:first-child { font-size: 2rem; }
+  .features h3 { font-size: 18px; }
+  .features p { font-size: 13px; }
+  .menu-card-title { font-size: 1.2rem; }
+  .coffee-hero .title { font-size: 1.8rem; }
+  .coffee-hero .description { font-size: 0.9rem; }
+  .image-wrapper { height: 320px; }
+  .image-box { border-width: 8px; }
+  .menu-item { margin-bottom: 25px; }
+  .item-name { font-size: 1.1rem; white-space: normal; }
+  .price { font-size: 1.1rem; }
+  .menu-section .description { font-size: 0.8rem; }
+  .main-heading { font-size: 1.8rem; }
+  .intro-text { font-size: 0.85rem; }
+  .feature-text h3 { font-size: 1.1rem; }
+  .feature-text p { font-size: 0.8rem; }
+  .icon-box { width: 40px; height: 40px; }
   .events-header-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .events-main-title { font-size: 28px; }
+  .events-description { font-size: 12px; }
   .event-thumb { display: none; }
   .event-id { width: 45px; }
-  .events-title { font-size: 24px; }
+  .event-info h3 { font-size: 14px; }
+  .event-meta { font-size: 8px; gap: 8px; flex-direction: column; align-items: flex-start; }
+  .event-price { font-size: 14px; width: 50px; }
+  .event-item { padding: 14px 8px; }
+  .reservation h2 { font-size: 28px; }
+  .reservation-sub { font-size: 11px; }
+  .form input, .form textarea { padding: 12px 14px; font-size: 13px; }
+  .form button { padding: 12px; font-size: 13px; }
+  .footer h3 { font-size: 20px; }
+  .footer p { font-size: 11px; }
+  .events-left { position: relative; top: 0; }
+  .events-list { height: 450px; }
 }
-.btnnn{
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .hero h1 { font-size: 28px; }
+  .btn { padding: 8px 20px; font-size: 12px; min-width: 140px; }
+  .container { padding: 0 16px; }
+  .coffee-hero .container { gap: 30px; }
+  .image-wrapper { height: 280px; }
+  .top-left, .bottom-right { width: 75%; }
+  .events-image { height: 220px; }
+  .events-title { font-size: 18px; }
+  .event-id-number { font-size: 18px; }
+}
+
+/* Ensure all interactive elements are touch-friendly on mobile */
+@media (max-width: 768px) {
+  .btn, .btn-about, .btn-view, .form button, .view-more-btn, .event-item {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .event-item {
+    padding: 16px 12px;
+  }
+  .nav-icons button {
+    padding: 8px;
+  }
+}
+
+.btnnn {
   /* margin-bottom: 50px; */
 }
-.herbtn{
+.herbtn {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
 
+/* Mobile adjustment for hero buttons */
+@media (max-width: 768px) {
+  .herbtn {
+    flex-direction: column;
+    gap: 12px;
+  }
 }

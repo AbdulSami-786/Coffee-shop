@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Calendar, ArrowRight } from 'lucide-react';
@@ -162,7 +163,7 @@ const HotCoffee = () => {
       }}>
 
         {/* ── Navbar ── */}
- <Navbar/>
+        <Navbar/>
 
         {/* ── Hero ── */}
         <section id="home" className="hero">
